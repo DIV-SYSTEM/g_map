@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'firebase_options.dart';
-import '../screen/login_screen.dart';
-import '../providers/user_provider.dart';
+import 'models/form_data.dart';
+import 'screens/form_screen.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (_) => UserProvider(),
+      create: (context) => FormData(),
       child: const MyApp(),
     ),
   );
@@ -22,12 +18,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SportFace',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true,
-      ),
-      home: const LoginScreen(),
+      title: 'Address Form App',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const FormScreen(),
     );
   }
 }
