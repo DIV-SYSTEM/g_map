@@ -16,7 +16,7 @@ dependencies:
   firebase_database: ^10.4.0
   firebase_auth: ^4.17.4
   google_maps_flutter: ^2.9.0
-  google_maps_place_picker_mb: ^3.2.2 # Replaced with maintained fork
+  google_maps_place_picker_mb: ^3.1.2 # Updated to valid version
   firebase_storage: ^11.6.0
   crypto: ^3.0.3
   image_picker: ^1.1.1
