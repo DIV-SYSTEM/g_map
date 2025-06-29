@@ -1,31 +1,26 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
- 
+
 android {
-    ndkVersion = "27.0.12077973"
+    ndkVersion = "27.0.12077973" // Optional, remove if not needed
     namespace = "com.example.app1"
     compileSdk = flutter.compileSdkVersion
-
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+    kotlin {
+        jvmToolchain(11) // Explicitly use Java 11 toolchain for Kotlin
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.app1"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        minSdk = 21 // Compatible with google_maps_flutter and google_maps_place_picker_mb
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -33,8 +28,6 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
         }
     }
@@ -42,4 +35,9 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    // Ensure consistent Kotlin version if needed
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.22") // Use a version compatible with your setup
 }
