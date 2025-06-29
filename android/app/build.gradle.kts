@@ -15,7 +15,7 @@ android {
     }
 
     kotlin {
-        jvmToolchain(11) // Explicitly use Java 11 toolchain for Kotlin
+        jvmToolchain(11) // Enforce Java 11 for Kotlin compilation
     }
 
     defaultConfig {
@@ -38,6 +38,17 @@ flutter {
 }
 
 dependencies {
-    // Ensure consistent Kotlin version if needed
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.22") // Use a version compatible with your setup
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.22") // Match Flutter's Kotlin version
+}
+
+// Force consistent JVM target for google_api_headers
+configurations.all {
+    resolutionStrategy {
+        eachDependency {
+            if (requested.group == "io.flutter.plugins.googleapiheaders") {
+                // Ensure google_api_headers uses Java 11
+                force("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
+            }
+        }
+    }
 }
